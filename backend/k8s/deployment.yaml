@@ -12,7 +12,7 @@ spec:
         labels: backend
     spec:
       container:
-        - name: backend
+      - name: backend
         image: 3a7jouokyffroregistry.azurecr.io/gaisush/frontend:latest
         imagepullpolicy: "Always"
         ports:
