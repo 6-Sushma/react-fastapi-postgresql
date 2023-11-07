@@ -1,27 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend #Sets Deployment name
+  name: backend  # Sets Deployment name
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: backend
-    template:
-      metadata:
-        labels: backend
+  template:
+    metadata:
+      labels:
+        app: backend
     spec:
-      container:
-      - name: backend
-        image: 3a7jouokyffroregistry.azurecr.io/gaisush/frontend:latest
-        imagepullpolicy: "Always"
-        ports:
-          - containerPort: 8000
-        env:
-          - name: Database_URL
-          valueForm:
-            secretKeyRef:
-              name: db-url
-              key: url
+      containers:
+        - name: backend
+          image: 3a7jouokyffroregistry.azurecr.io/gaisush/backend:latest
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 8000  # Exposes container port    
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: db-url
+                  key: url
       imagePullSecrets:
-        - name: docker-pull-secret
+      - name: docker-pull-secret
