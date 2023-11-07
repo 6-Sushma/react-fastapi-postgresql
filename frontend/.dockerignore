@@ -1,0 +1,5 @@
+node_modules
+package-lock.json
+ngnix.config
+build
+k8s
